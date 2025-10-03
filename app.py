@@ -42,8 +42,9 @@ def predict():
         vec = np.array(third[0]).reshape(1, -1)
 
         
+        proba = None
         try:
-            proba = None
+            
             if hasattr(model, 'predict_proba'):
                 proba = model.predict_proba(vec)[0]
             pred = model.predict(vec)[0]
@@ -51,24 +52,26 @@ def predict():
             
             pred = model.predict(vec)
 
-        label = 'Spam' if int(pred) == 1 else 'Not Spam'
+        
+        label = 'Spam' if int(pred) == 0 else 'Not Spam'
 
         spam_proba = None
         if proba is not None:
             classes = getattr(model, 'classes_', None)
-            
+
             idx = None
             if classes is not None:
                 try:
-                    idx = list(classes).index(1)
+                    # spam is encoded as 0 in your dataset/model
+                    idx = list(classes).index(0)
                 except ValueError:
                     try:
                         idx = list(classes).index('spam')
                     except ValueError:
                         idx = None
             if idx is None:
-                
-                spam_proba = float(max(proba))
+               
+                spam_proba = float(min(proba))
             else:
                 spam_proba = float(proba[idx])
 
