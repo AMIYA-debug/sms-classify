@@ -1,8 +1,10 @@
 numpy
 gensim
-pandas
 nltk
+pandas
 flask
 gunicorn
+
+
 
 
