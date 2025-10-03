@@ -21,12 +21,6 @@ def separate(sentence):
     return [simple_preprocess(s) for s in sentence]
 
 
-
-
-corpus_sample="Go until jurong point, crazy.. Available only ..."
-store=cleaning_part(corpus_sample)
-print(separate(store))
-
    
 
 
