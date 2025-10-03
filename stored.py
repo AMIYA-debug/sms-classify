@@ -3,18 +3,31 @@ import pandas as pd
 import nltk
 import re
 from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import sent_tokenize
+from gensim.utils import simple_preprocess
 wl=WordNetLemmatizer()
 def cleaning_part(message):
     corpus = []
-    for i in range(len(message)):
-        review = re.sub('[^a-zA-Z]', ' ', message[i])  # fix here
-        review = review.lower()
-        review = review.split()
-        review = [wl.lemmatize(word) for word in review]
-        review = ' '.join(review)
-        corpus.append(review)
+    
+    review = re.sub('[^a-zA-Z]', ' ', message)
+    review = review.lower()
+    review = review.split()
+    review = [wl.lemmatize(word) for word in review]
+    review = ' '.join(review)
+    corpus.append(review)
     
     return corpus    
+def separate(sentence):
+    return [simple_preprocess(s) for s in sentence]
+
+
+
+
+corpus_sample="Go until jurong point, crazy.. Available only ..."
+store=cleaning_part(corpus_sample)
+print(separate(store))
+
+   
 
 
 
