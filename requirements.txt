@@ -1,8 +1,9 @@
-gunicorn
+gensim
 nltk
 pandas
 numpy
 flask
+
 
 
 
