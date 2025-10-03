@@ -1,9 +1,11 @@
-numpy
-gensim
+gunicorn
 nltk
 pandas
+numpy
 flask
-gunicorn
+
+
+
 
 
 
